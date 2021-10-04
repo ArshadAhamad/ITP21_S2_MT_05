@@ -1,0 +1,627 @@
+<div class="container" id="main-container">
+    <div class="card">
+
+        <form [formGroup]="examTimeTableFormGroup" >
+            <div formGroupName="examG" class="form-area">
+              
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Class Name</label>
+                <select formControlName="grade" (change)="listUniqueClassTimeTable('examG')">
+                  <option *ngFor="let grade of grades" [ngValue]="grade">
+                      {{grade.class_name}} - {{grade.class_section_name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+        </form>
+
+        <div class="card-header">
+            <div class="card-head-row card-tools-still-right">
+                <h4 class="card-title">Exam Time Table LIST</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- <div class="col-md-2">
+                    <div class="table table-striped">
+                        <table class="table table-striped">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th >MD</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr >
+                                        <td >7.40-8.20</td>      
+                                        <td *ngFor="let b of ct.timeslot1" >
+                                           <span *ngIf="b.period_day=='MONDAY'">
+                                             {{ b.subject_name }}
+                                            <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                          </span>                                            
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="col-md-4">8.20-9.00</td>      
+                                        <td class="col-md-8" *ngFor="let b of ct.timeslot2">
+                                            <span *ngIf="b.period_day=='MONDAY'">
+                                                {{ b.subject_name }}
+                                               <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                             </span> 
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="col-md-4">9.00-9.40</td>      
+                                        <td class="col-md-8" *ngFor="let b of ct.timeslot3"> 
+                                            <span *ngIf="b.period_day=='MONDAY'">
+                                                {{ b.subject_name }}
+                                               <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                             </span> 
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="col-md-4">9.40-10.20</td>      
+                                        <td class="col-md-8" *ngFor="let b of ct.timeslot4">
+                                            <span *ngIf="b.period_day=='MONDAY'">
+                                                {{ b.subject_name }}
+                                               <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                             </span> 
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="col-md-4">10.40-11.20</td>      
+                                        <td class="col-md-8" *ngFor="let b of ct.timeslot5">
+                                            <span *ngIf="b.period_day=='MONDAY'">
+                                                {{ b.subject_name }}
+                                               <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                             </span> 
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="col-md-4">11.20-12.00</td>      
+                                        <td class="col-md-8" *ngFor="let b of ct.timeslot6">
+                                            <span *ngIf="b.period_day=='MONDAY'">
+                                                {{ b.subject_name }}
+                                               <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                             </span>  
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="col-md-4">12.00-12.40</td>      
+                                        <td class="col-md-8" *ngFor="let b of ct.timeslot7">
+                                            <span *ngIf="b.period_day=='MONDAY'">
+                                                {{ b.subject_name }}
+                                               <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                             </span>   
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="col-md-4">12.40-1.20</td>      
+                                        <td class="col-md-8" *ngFor="let b of ct.timeslot8">
+                                            <span *ngIf="b.period_day=='MONDAY'">
+                                                {{ b.subject_name }}
+                                               <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                             </span> 
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="col-md-4">1.20-2.00</td>      
+                                        <td class="col-md-8" *ngFor="let b of ct.timeslot9">
+                                            <span *ngIf="b.period_day=='MONDAY'">
+                                                {{ b.subject_name }}
+                                               <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                             </span> 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                              </table>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="table table-striped">
+                      <table class="table table-striped">
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  
+                                  <th >TUE</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr >
+                                      <td >|</td>      
+                                      <td *ngFor="let b of ct.timeslot1" >
+                                         <span *ngIf="b.period_day=='TUESDAY'">
+                                           {{ b.subject_name }}
+                                          <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                        </span>                                            
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot2">
+                                          <span *ngIf="b.period_day=='TUESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot3"> 
+                                          <span *ngIf="b.period_day=='TUESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot4">
+                                          <span *ngIf="b.period_day=='TUESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot5">
+                                          <span *ngIf="b.period_day=='TUESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot6">
+                                          <span *ngIf="b.period_day=='TUESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span>  
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot7">
+                                          <span *ngIf="b.period_day=='TUESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span>   
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot8">
+                                          <span *ngIf="b.period_day=='TUESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot9">
+                                          <span *ngIf="b.period_day=='TUESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                      </table>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="table table-striped">
+                      <table class="table table-striped">
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  
+                                  <th >WED</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr >
+                                      <td >|</td>      
+                                      <td *ngFor="let b of ct.timeslot1" >
+                                         <span *ngIf="b.period_day=='WEDNESDAY'">
+                                           {{ b.subject_name }}
+                                          <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                        </span>                                            
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot2">
+                                          <span *ngIf="b.period_day=='WEDNESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot3"> 
+                                          <span *ngIf="b.period_day=='WEDNESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot4">
+                                          <span *ngIf="b.period_day=='WEDNESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot5">
+                                          <span *ngIf="b.period_day=='WEDNESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot6">
+                                          <span *ngIf="b.period_day=='WEDNESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span>  
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot7">
+                                          <span *ngIf="b.period_day=='WEDNESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span>   
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot8">
+                                          <span *ngIf="b.period_day=='WEDNESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot9">
+                                          <span *ngIf="b.period_day=='WEDNESDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                      </table>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="table table-striped">
+                      <table class="table table-striped">
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  
+                                  <th >THU</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr >
+                                      <td >|</td>      
+                                      <td *ngFor="let b of ct.timeslot1" >
+                                         <span *ngIf="b.period_day=='THURSDAY'">
+                                           {{ b.subject_name }}
+                                          <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                        </span>                                            
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot2">
+                                          <span *ngIf="b.period_day=='THURSDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot3"> 
+                                          <span *ngIf="b.period_day=='THURSDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot4">
+                                          <span *ngIf="b.period_day=='THURSDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot5">
+                                          <span *ngIf="b.period_day=='THURSDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot6">
+                                          <span *ngIf="b.period_day=='THURSDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span>  
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot7">
+                                          <span *ngIf="b.period_day=='THURSDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span>   
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot8">
+                                          <span *ngIf="b.period_day=='THURSDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot9">
+                                          <span *ngIf="b.period_day=='THURSDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                      </table>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="table table-striped">
+                      <table class="table table-striped">
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  
+                                  <th >FRI</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr >
+                                      <td >|</td>      
+                                      <td *ngFor="let b of ct.timeslot1" >
+                                         <span *ngIf="b.period_day=='FRIDAY'">
+                                           {{ b.subject_name }}
+                                          <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                        </span>                                            
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot2">
+                                          <span *ngIf="b.period_day=='FRIDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot3"> 
+                                          <span *ngIf="b.period_day=='FRIDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot4">
+                                          <span *ngIf="b.period_day=='FRIDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot5">
+                                          <span *ngIf="b.period_day=='FRIDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot6">
+                                          <span *ngIf="b.period_day=='FRIDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span>  
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot7">
+                                          <span *ngIf="b.period_day=='FRIDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span>   
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot8">
+                                          <span *ngIf="b.period_day=='FRIDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td class="col-md-4">|</td>      
+                                      <td class="col-md-8" *ngFor="let b of ct.timeslot9">
+                                          <span *ngIf="b.period_day=='FRIDAY'">
+                                              {{ b.subject_name }}
+                                             <span  class="btn btn-danger" (click)="deleteeTT(b.id)" >D</span> 
+                                           </span> 
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                      </table>
+                  </div>
+                </div> -->
+                <div class="col-md-12">
+                  <div class="table table-striped">
+                      <table class="table table-striped">
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  <!-- <th scope="col">#</th> -->
+                                  <th scope="col">DATE</th>
+                                  <th scope="col">TIME</th>
+                                  <th scope="col">SUBJECT</th>
+                                  <th scope="col">ACTION</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let temExamTimeTable of examTimeTable">
+                                      <!-- <td>1</td> -->
+                                      <td>{{ temExamTimeTable.period_day }}</td>
+                                      <td class="text-right">
+                                          {{ temExamTimeTable.period_time }}
+                                      </td>
+                                      <td class="text-right">
+                                          {{ temExamTimeTable.subject_name }}
+                                      </td>
+                                      <td style="float:left">
+                                          <!-- <a  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editClass" (click)="editGrade(tempGrade,tempGrade.class_id)" >EDIT</a> -->
+                                          <a  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClass" (click)="onEdit(temExamTimeTable)" >EDIT</a>
+                                          <a class="btn  btn-danger btn-xs btn-refresh-card" (click)="onDelete(temExamTimeTable.class_id)" >DELETE</a>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                      </table>
+                  </div>
+              </div>
+            </div>
+        </div>
+    
+    
+        <!-- Button trigger modal -->
+      <button (click)="clickAddButton()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExamTimeTable">
+        ADD EXAM TIMETABLE
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="addExamTimeTable" tabindex="-1" aria-labelledby="addExamTimeTableLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addExamTimeTableLabel">CREATE NEW Exam Time Table</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="eTTFormGroup" >
+                   <div formGroupName="eTT" class="form-area">
+                      <div class="mb-3">
+                        <label for="examTimeTableYear" class="form-label">Year : </label>
+                        <input type="text" class="form-control" id="examTimeTableYear" formControlName="examTimeTableYear" aria-describedby="emailHelp">                        
+                      </div>
+                      <div class="mb-3">
+                        <label for="examTimeTableClassTermName" class="form-label">Term Name : </label>
+                        <input type="text" class="form-control" id="examTimeTableClassTermName" formControlName="examTimeTableClassTermName" aria-describedby="emailHelp">                        
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">CLASS NAME : </label>
+                        <select formControlName="grade" (change)="listSubjects('eTT')">
+                          <option *ngFor="let grade of grades" [ngValue]="grade">
+                              {{grade.class_name}} {{grade.class_section_name}}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="subject" class="form-label">SUBJECT : </label>
+                          <select formControlName="subject" >
+                            <option *ngFor="let subject of subjects" [ngValue]="subject">
+                                {{subject.subject_name}}
+                            </option>
+                        </select>
+                      </div>
+                      <!-- <div class="mb-3">
+                        <label for="examTimeTableClassPeriodDay" class="form-label">DATE :</label>
+                        <select formControlName="examTimeTableClassPeriodDay" >
+                          <option *ngFor="let examTimeTableClassPeriodDay of days" [ngValue]="examTimeTableClassPeriodDay">
+                              {{examTimeTableClassPeriodDay.day}}
+                          </option>
+                      </select>
+                      </div> -->
+                      <div class="mb-3">
+                        <label for="examTimeTableClassPeriodDay" class="form-label">DATE : </label>
+                        <input type="date" class="form-control" id="examTimeTableClassPeriodDay" formControlName="examTimeTableClassPeriodDay" aria-describedby="emailHelp">                        
+                      </div>
+                      <div class="mb-3">
+                        <label for="examTimeTableClassPeriodTime" class="form-label">TIME :</label>
+                        <select formControlName="examTimeTableClassPeriodTime" >
+                          <option *ngFor="let examTimeTableClassPeriodTime of times" [ngValue]="examTimeTableClassPeriodTime">
+                              {{examTimeTableClassPeriodTime.time}}
+                          </option>
+                      </select>
+                      </div>
+
+                      
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" *ngIf="showAdd" (click)="onSubmit()" class="btn btn-primary">Save</button>
+                        <button type="button" *ngIf="showUpdate" (click)="onUpdate()" class="btn btn-primary">Update</button>
+                      </div>
+                   </div>
+               </form>
+            </div>        
+          </div>
+        </div>
+      </div>
+    
+    
+    </div>
+    
+    
+    </div>

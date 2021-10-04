@@ -1,0 +1,239 @@
+<div class="container" id="main-container">
+    <div class="card">
+
+        <form [formGroup]="classTimeTableFormGroup" >
+            <div formGroupName="classG" class="form-area">
+              
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Class Name</label>
+                <select formControlName="grade" (change)="listUniqueClassTimeTable('classG')">
+                  <option *ngFor="let grade of grades" [ngValue]="grade">
+                      {{grade.class_name}} - {{grade.class_section_name}}
+                  </option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Staff Name</label>
+                <select formControlName="staff" (change)="listUniqueStaffTimeTable('classG')">
+                  <option *ngFor="let staff of staffs" [ngValue]="staff">
+                      {{staff.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </form>
+
+        <div class="card-header">
+            <div class="card-head-row card-tools-still-right">
+                <h4 class="card-title">Time Table LIST</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table table-striped">
+                        <table class="table table-striped">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">MONDAY</th>
+                                    <th scope="col">TUESDAY</th>
+                                    <th scope="col">WEDNESDAY</th>
+                                    <th scope="col">THURSDAY</th>
+                                    <th scope="col">FRIDAY</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let b of ct.timeslot1; let i = index">
+                                        <td colspan="5">
+                                          <table width="100%">
+                                              <tr *ngFor="let lot of b.period_day; let i = index">
+                                                <td width="20%" class="counter"><!-- Counter via CSS --></td>
+                                                <td width="20%">{{lot.subject_name}}</td>
+                                                <td width="20%">{{lot.taff_name}}</td>
+                                                <!-- <td width="20%">{{sensor.project.code}}</td>
+                                                <td width="20%">{{sensor.project.project}}</td> -->
+                                              </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+
+                                    <!-- <tr >
+                                        <td>7.40-8.20</td>      
+                                        <td *ngFor="let b of ct.timeslot1" >
+                                           <span *ngIf="b.period_day=='MONDAY'">
+                                             {{ b.subject_name }} |
+                                            {{ b.staff_name }} | 
+                                            {{ b.period_time }} |
+                                            {{ b.period_day }}</span> 
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td>8.20-9.00</td>      
+                                        <td *ngFor="let b of ct.timeslot2">
+                                          <span *ngIf="b.period_day=='MONDAY'">
+                                            {{ b.subject_name }} |
+                                           {{ b.staff_name }} | 
+                                           {{ b.period_time }} |
+                                           {{ b.period_day }}</span> 
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td>9.00-9.40</td>      
+                                        <td *ngFor="let b of ct.timeslot3"> 
+                                          <span *ngIf="b.period_day=='MONDAY'">
+                                            {{ b.subject_name }} |
+                                           {{ b.staff_name }} | 
+                                           {{ b.period_time }} |
+                                           {{ b.period_day }}</span> 
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td>9.40-10.20</td>      
+                                        <td *ngFor="let b of ct.timeslot4">
+                                            {{ b.subject_name }} |
+                                            {{ b.staff_name }} | 
+                                            {{ b.period_time }}
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td>10.40-11.20</td>      
+                                        <td *ngFor="let b of ct.timeslot5">
+                                            {{ b.subject_name }} |
+                                            {{ b.staff_name }} | 
+                                            {{ b.period_time }}
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td>11.20-12.00</td>      
+                                        <td *ngFor="let b of ct.timeslot6">
+                                            {{ b.subject_name }} |
+                                            {{ b.staff_name }} | 
+                                            {{ b.period_time }}
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td>12.00-12.40</td>      
+                                        <td *ngFor="let b of ct.timeslot7">
+                                            {{ b.subject_name }} |
+                                            {{ b.staff_name }} | 
+                                            {{ b.period_time }}
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td>12.40-1.20</td>      
+                                        <td *ngFor="let b of ct.timeslot8">
+                                            {{ b.subject_name }} |
+                                            {{ b.staff_name }} | 
+                                            {{ b.period_time }}
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td>1.20-2.00</td>      
+                                        <td *ngFor="let b of ct.timeslot9">
+                                            {{ b.subject_name }} |
+                                            {{ b.staff_name }} | 
+                                            {{ b.period_time }}
+                                        </td>
+                                    </tr> -->
+
+
+
+
+                                    <!-- <tr *ngFor="let b of ctt.timeslot2">                                        
+                                      <td >
+                                          {{ b.subject_name }} |
+                                          {{ b.staff_name }}
+                                      </td> 
+                                                        
+                                  </tr> -->
+                                    <!-- <tr *ngFor="let tempClassTimeTable of classTimeTables">
+                                        
+                                        <td *ngIf="tempClassTimeTable.period_day=='MONDAY'">
+                                            {{ tempClassTimeTable.subject_name }} |
+                                            {{ tempClassTimeTable.staff_name }}
+                                        </td>
+                                        <td *ngIf="tempClassTimeTable.period_day=='TUESDAY'">{{ tempClassTimeTable.subject_name }}</td>
+                                        <td *ngIf="tempClassTimeTable.period_day=='WEDNESDAY'">{{ tempClassTimeTable.subject_name }}</td>
+                                        <td *ngIf="tempClassTimeTable.period_day=='THURSDAY'">{{ tempClassTimeTable.subject_name }}</td>
+                                        <td *ngIf="tempClassTimeTable.period_day=='FRIDAY'">{{ tempClassTimeTable.subject_name }}</td>                                        
+                                    </tr> -->
+                                    <!-- <tr *ngFor="let tempClassTimeTable of classTimeTablesMonday">                                        
+                                        <td>
+                                            {{ tempClassTimeTable.subject_name }} |
+                                            {{ tempClassTimeTable.staff_name }}
+                                        </td>                                        
+                                    </tr>
+                                    <tr *ngFor="let tempClassTimeTable of classTimeTablesTuesday">                                        
+                                        <td>
+                                            {{ tempClassTimeTable.subject_name }} |
+                                            {{ tempClassTimeTable.staff_name }}
+                                        </td>                                        
+                                    </tr>
+                                    <tr *ngFor="let tempClassTimeTable of classTimeTablesWednesday">                                        
+                                        <td>
+                                            {{ tempClassTimeTable.subject_name }} |
+                                            {{ tempClassTimeTable.staff_name }}
+                                        </td>                                        
+                                    </tr>
+                                    <tr *ngFor="let tempClassTimeTable of classTimeTablesThursday">                                        
+                                        <td>
+                                            {{ tempClassTimeTable.subject_name }} |
+                                            {{ tempClassTimeTable.staff_name }}
+                                        </td>                                        
+                                    </tr>
+                                    <tr *ngFor="let tempClassTimeTable of classTimeTablesFriday">                                        
+                                        <td>
+                                            {{ tempClassTimeTable.subject_name }} |
+                                            {{ tempClassTimeTable.staff_name }}
+                                        </td>                                        
+                                    </tr> -->
+                                </tbody>
+                              </table>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <!-- Button trigger modal -->
+      <!-- <button (click)="clickAddButton()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubject">
+        ADD SUBJECT
+      </button> -->
+      
+      <!-- Modal -->
+      <!-- <div class="modal fade" id="addSubject" tabindex="-1" aria-labelledby="addSubjectLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addSubjectLabel">Create New Subject</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="subjectFormGroup" >
+                   <div formGroupName="subject" class="form-area">
+                    <div class="mb-3">
+                        <label for="subjectName" class="form-label">Class Name</label>
+                        <input type="text" class="form-control" id="subjectName" formControlName="subjectName" aria-describedby="emailHelp">
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" *ngIf="showAdd" (click)="onSubmit()" class="btn btn-primary">Save</button>
+                        <button type="button" *ngIf="showUpdate" (click)="onUpdate()" class="btn btn-primary">Update</button>
+                      </div>
+                   </div>
+               </form>
+            </div>        
+          </div>
+        </div>
+      </div> -->
+    
+    
+    </div>
+    
+    
+    </div>
